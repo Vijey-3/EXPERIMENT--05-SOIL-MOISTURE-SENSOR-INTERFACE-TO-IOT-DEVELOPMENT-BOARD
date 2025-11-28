@@ -115,7 +115,9 @@ GND is the ground pin.
 ```
 #include "main.h"
 #include "stdio.h"
-#if defined(__GNUC_s_)
+
+#if defined(__GNUC__)
+
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #endif
 uint16_t readValue;
@@ -135,16 +137,16 @@ int main(void)
     MX_GPIO_Init();
   MX_ADC_Init();
   MX_USART2_UART_Init();
-    while (1)
+  while (1)
   {
-    	  HAL_ADC_Start(&hadc);
+   HAL_ADC_Start(&hadc);
          HAL_ADC_PollForConversion(&hadc, HAL_MAX_DELAY);
-	  readValue = HAL_ADC_GetValue(&hadc);
-	printf("Read value : %d\n", readValue);
-	HAL_ADC_Stop(&hadc);
-	uint32_t soilmoist = 100 - (readValue / 40.96);
-	 printf("Soil moisture : %ld %%\n", soilmoist);
-	HAL_Delay(1000);
+	     readValue = HAL_ADC_GetValue(&hadc);
+	 	 printf("Read value : %d\n", readValue);
+		 HAL_ADC_Stop(&hadc);
+		 uint32_t soilmoist = 100 - (readValue / 40.96);
+	 	 printf("Soil moisture : %ld %%\n", soilmoist);
+		 HAL_Delay(1000);
       }
   }
 PUTCHAR_PROTOTYPE
@@ -159,6 +161,7 @@ PUTCHAR_PROTOTYPE
 ## Output screen shots on serial monitor   :
  
  ![sand](https://github.com/user-attachments/assets/b4fd6eff-84ae-478b-bcad-9fbb8931a29b)
+<img width="1061" height="564" alt="image" src="https://github.com/user-attachments/assets/ea40c087-4855-4300-8ba9-c6e5cd26e1b0" />
 
  
  
